@@ -26,4 +26,8 @@ public class StoreProductController {
         return this.storeProductService.addProduct(newProduct);
     }
 
+    @GetMapping("/{id}")
+    public StoreProduct find(@PathVariable(name = "id") String productId) {
+        return this.storeProductService.getProduct(productId);
+    }
 }

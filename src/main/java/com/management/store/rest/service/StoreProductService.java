@@ -25,4 +25,15 @@ public class StoreProductService {
         this.log.info("Added a new product to the store: {}", newProd);
         return newProd;
     }
+
+    public StoreProduct getProduct(String productId) {
+        try {
+            long id = Long.parseLong(productId);
+            return productRepository.findById(id).orElse(null);
+        } catch (NullPointerException | NumberFormatException e) {
+            log.error("Invalid product ID. Cannot search by {}", productId);
+            throw new IllegalArgumentException("Invalid product ID supplied");
+        }
+    }
 }
+
