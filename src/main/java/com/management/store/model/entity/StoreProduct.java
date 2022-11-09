@@ -5,8 +5,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity(name = "StoreProduct")
-@Table(name = "STORE_PRODUCT")
+@Entity
+@Table(name = "STORE_PRODUCT", schema = "PUBLIC")
 @Data
 @NoArgsConstructor
 public class StoreProduct {
