@@ -1,8 +1,24 @@
-- 👋 Hi, I’m Florin
-- I will be pushing my store POC under this GitHub account: @florin4t
-- More info to come as I work on it...
+Store Management Tool
 
-<!---
-florin4t/florin4t is a ✨ special ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-You can click the Preview link to take a look at your changes.
---->
+
+    Info
+
+This is an API that acts as a store management tool.
+
+
+    Configuration
+
+For some basic configuration, see the application.properties file.
+
+
+
+    API usage
+
+1. get all products
+   
+    http://localhost:8090/api/product/all
+
+
+2. create a new product
+
+    curl -X POST http://localhost:8090/api/product/add -d '{"id":null,"name":null,"price":null,"currency":null}' -H 'Content-Type: application/json'

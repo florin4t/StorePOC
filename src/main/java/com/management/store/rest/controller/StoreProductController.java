@@ -2,9 +2,7 @@ package com.management.store.rest.controller;
 
 import com.management.store.model.entity.StoreProduct;
 import com.management.store.rest.service.StoreProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,7 +18,12 @@ public class StoreProductController {
 
     @GetMapping("/all")
     public List<StoreProduct> products() {
-        return storeProductService.getStoreProducts();
+        return this.storeProductService.getStoreProducts();
+    }
+
+    @PostMapping("/add")
+    public StoreProduct addProduct(@RequestBody StoreProduct newProduct) {
+        return this.storeProductService.addProduct(newProduct);
     }
 
 }
