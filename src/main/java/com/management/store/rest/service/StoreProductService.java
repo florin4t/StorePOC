@@ -2,11 +2,13 @@ package com.management.store.rest.service;
 
 import com.management.store.model.entity.StoreProduct;
 import com.management.store.model.repo.StoreProductRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Slf4j
 public class StoreProductService {
     private final StoreProductRepository productRepository;
 
@@ -15,10 +17,12 @@ public class StoreProductService {
     }
 
     public List<StoreProduct> getStoreProducts() {
-        return List.of(new StoreProduct());
+        return productRepository.findAll();
     }
 
     public StoreProduct addProduct(StoreProduct newProduct) {
-        return this.productRepository.save(newProduct);
+        StoreProduct newProd = this.productRepository.save(newProduct);
+        this.log.info("Added a new product to the store: {}", newProd);
+        return newProd;
     }
 }
