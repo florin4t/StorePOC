@@ -1,13 +1,20 @@
 package com.management.store.model.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.Data;
 
-@Entity(name = "STORE_PRODUCT")
+import javax.persistence.*;
+
+@Entity(name = "StoreProduct")
+@Table(name = "STORE_PRODUCT")
+@Data
 public class StoreProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    private String name;
+
+    private Double price;
+
+    private String currency;
 }
