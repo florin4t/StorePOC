@@ -2,6 +2,8 @@ package com.management.store.rest.controller;
 
 import com.management.store.model.entity.StoreProduct;
 import com.management.store.rest.service.StoreProductService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,7 +29,7 @@ public class StoreProductController {
     }
 
     @GetMapping("/{id}")
-    public StoreProduct find(@PathVariable(name = "id") String productId) {
-        return this.storeProductService.getProduct(productId);
+    public ResponseEntity<List<StoreProduct>> find(@PathVariable(name = "id") String productId) {
+        return new ResponseEntity<>(this.storeProductService.getProduct(productId), HttpStatus.OK);
     }
 }

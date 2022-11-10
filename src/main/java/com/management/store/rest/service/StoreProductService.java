@@ -26,10 +26,12 @@ public class StoreProductService {
         return newProd;
     }
 
-    public StoreProduct getProduct(String productId) {
+    public List<StoreProduct> getProduct(String productId) {
         try {
             long id = Long.parseLong(productId);
-            return productRepository.findById(id).orElse(null);
+            List<StoreProduct> searchResults = List.of();
+            productRepository.findById(id).ifPresentOrElse(searchResults::add, () -> {});
+            return searchResults;
         } catch (NullPointerException | NumberFormatException e) {
             log.error("Invalid product ID. Cannot search by {}", productId);
             throw new IllegalArgumentException("Invalid product ID supplied");
