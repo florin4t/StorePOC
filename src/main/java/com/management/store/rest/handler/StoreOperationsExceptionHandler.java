@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class StoreOperationsExceptionHandler {
     private static final String MSG_USER_ERROR = "Incorrect request data. Retry the request with valid input.";
     private static final String MSG_USER_VALIDATION_ERROR = "The data in the request does not meet all the validation criteria.";
+    private static final String MSG_INTERNAL_ERROR = "There was an unexpected internal error. Check the error logs for more details.";
 
     @ExceptionHandler(value = {IllegalArgumentException.class})
     public ResponseEntity<ExceptionInfo> handleUserDataErrors(RuntimeException ex) {
@@ -31,5 +32,12 @@ public class StoreOperationsExceptionHandler {
         return new ResponseEntity<>(
                 new ExceptionInfo(MSG_USER_VALIDATION_ERROR, errorsMap.toString()),
                 HttpStatus.PRECONDITION_FAILED);
+    }
+
+    @ExceptionHandler(value = {IllegalStateException.class})
+    public ResponseEntity<ExceptionInfo> handleInternalError(RuntimeException ex) {
+        return new ResponseEntity<>(
+                new ExceptionInfo(MSG_INTERNAL_ERROR, ex.getMessage()),
+                HttpStatus.BAD_REQUEST);
     }
 }

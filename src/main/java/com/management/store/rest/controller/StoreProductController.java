@@ -5,6 +5,7 @@ import com.management.store.rest.service.StoreProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -33,5 +34,11 @@ public class StoreProductController {
     @GetMapping("/{id}")
     public ResponseEntity<List<StoreProduct>> find(@PathVariable(name = "id") String productId) {
         return new ResponseEntity<>(this.storeProductService.getProduct(productId), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public List<StoreProduct> updateProduct(@PathVariable(name = "id") String productId,
+                                                            @RequestBody @Validated StoreProduct updatedProduct) {
+        return this.storeProductService.updateProduct(productId, updatedProduct);
     }
 }

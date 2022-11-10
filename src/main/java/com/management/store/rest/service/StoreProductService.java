@@ -5,6 +5,7 @@ import com.management.store.model.repo.StoreProductRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -29,13 +30,31 @@ public class StoreProductService {
     public List<StoreProduct> getProduct(String productId) {
         try {
             long id = Long.parseLong(productId);
-            List<StoreProduct> searchResults = List.of();
+            List<StoreProduct> searchResults = new ArrayList<>();
             productRepository.findById(id).ifPresentOrElse(searchResults::add, () -> {
             });
             return searchResults;
         } catch (NullPointerException | NumberFormatException e) {
             log.error("Invalid product ID. Cannot search by {}", productId);
             throw new IllegalArgumentException("Invalid product ID supplied");
+        }
+    }
+
+    public List<StoreProduct> updateProduct(String productId, StoreProduct updatedProduct) {
+        List<StoreProduct> productMatches = this.getProduct(productId);
+        switch (productMatches.size()) {
+            case 0 -> throw new IllegalArgumentException("Update failed, product not found.");
+            case 1 -> {
+                StoreProduct existingProduct = productMatches.get(0);
+                existingProduct.setName(updatedProduct.getName());
+                existingProduct.setPrice(updatedProduct.getPrice());
+                existingProduct.setCurrency(updatedProduct.getCurrency());
+                return List.of(this.productRepository.save(existingProduct));
+            }
+            default -> {
+                log.error("The find product operation for id {} returned multiple results.", productId);
+                throw new IllegalStateException("Product search by ID returned multiple results.");
+            }
         }
     }
 }

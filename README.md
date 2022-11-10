@@ -35,3 +35,8 @@ For some basic configuration, see the application.properties file.
    curl -X GET http://localhost:8090/api/product/99999999
 
    curl -X GET http://localhost:8090/api/product/INVALIDID
+
+
+4. update a product by its ID
+
+   curl -X PUT http://localhost:8090/api/product/20 -H 'Content-Type: application/json' -d '{"id":null,"name":"New Product","price":123.456,"currency":"EUR"}'
