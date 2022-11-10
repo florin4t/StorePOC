@@ -58,8 +58,9 @@ public class StoreProductControllerTest {
     @SneakyThrows
     private void callAddEndpoint() {
         mock.perform(post("/api/product/add")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(new StoreProduct())))
-                .andExpect(status().isOk());
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(
+                        new StoreProduct(-1L, "UT Product", 100.01, "USD")))
+        ).andExpect(status().isOk());
     }
 }

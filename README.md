@@ -21,10 +21,14 @@ For some basic configuration, see the application.properties file.
 
 2. create a new product
 
-    curl -X POST http://localhost:8090/api/product/add -d '{"id":null,"name":null,"price":null,"currency":null}' -H 'Content-Type: application/json'
+
+   invalid request: curl -X POST http://localhost:8090/api/product/add -d '{"id":null,"name":null,"price":null,"currency":null}' -H 'Content-Type: application/json'
+    
+
+   valid request: curl -X POST http://localhost:8090/api/product/add -d '{"id": null, "name":"Product 1", "price":100, "currency":"USD"}' -H 'Content-Type: application/json'
 
 
-3. find a produc by its ID
+3. find a product by its ID
 
    curl -X http://localhost:8090/api/product/1
 

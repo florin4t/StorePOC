@@ -30,7 +30,8 @@ public class StoreProductService {
         try {
             long id = Long.parseLong(productId);
             List<StoreProduct> searchResults = List.of();
-            productRepository.findById(id).ifPresentOrElse(searchResults::add, () -> {});
+            productRepository.findById(id).ifPresentOrElse(searchResults::add, () -> {
+            });
             return searchResults;
         } catch (NullPointerException | NumberFormatException e) {
             log.error("Invalid product ID. Cannot search by {}", productId);

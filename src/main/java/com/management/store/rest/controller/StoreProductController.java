@@ -3,9 +3,11 @@ package com.management.store.rest.controller;
 import com.management.store.model.entity.StoreProduct;
 import com.management.store.rest.service.StoreProductService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,8 +25,8 @@ public class StoreProductController {
         return this.storeProductService.getStoreProducts();
     }
 
-    @PostMapping("/add")
-    public StoreProduct addProduct(@RequestBody StoreProduct newProduct) {
+    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public StoreProduct addProduct(@RequestBody @Valid StoreProduct newProduct) {
         return this.storeProductService.addProduct(newProduct);
     }
 
