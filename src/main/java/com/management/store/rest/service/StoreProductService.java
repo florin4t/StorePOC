@@ -24,7 +24,7 @@ public class StoreProductService {
 
     public StoreProduct addProduct(StoreProduct newProduct) {
         StoreProduct newProd = this.productRepository.save(newProduct);
-        this.log.info("Adding a new product to the store: {}", newProd);
+        log.info("Adding a new product to the store: {}", newProd);
         return newProd;
     }
 

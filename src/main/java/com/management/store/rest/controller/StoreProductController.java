@@ -42,12 +42,9 @@ public class StoreProductController {
         return this.storeProductService.updateProduct(productId, updatedProduct);
     }
 
-
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteProduct(@PathVariable(name = "id") String productId) {
         this.storeProductService.deleteProduct(productId);
         return new ResponseEntity<>(String.format("Deleted product with ID %s", productId), HttpStatus.OK);
     }
-
-
 }
