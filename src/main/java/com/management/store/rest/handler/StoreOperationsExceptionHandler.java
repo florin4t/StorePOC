@@ -38,6 +38,6 @@ public class StoreOperationsExceptionHandler {
     public ResponseEntity<ExceptionInfo> handleInternalError(RuntimeException ex) {
         return new ResponseEntity<>(
                 new ExceptionInfo(MSG_INTERNAL_ERROR, ex.getMessage()),
-                HttpStatus.BAD_REQUEST);
+                HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

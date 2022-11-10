@@ -38,7 +38,16 @@ public class StoreProductController {
 
     @PutMapping("/{id}")
     public List<StoreProduct> updateProduct(@PathVariable(name = "id") String productId,
-                                                            @RequestBody @Validated StoreProduct updatedProduct) {
+                                            @RequestBody @Validated StoreProduct updatedProduct) {
         return this.storeProductService.updateProduct(productId, updatedProduct);
     }
+
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable(name = "id") String productId) {
+        this.storeProductService.deleteProduct(productId);
+        return new ResponseEntity<>(String.format("Deleted product with ID %s", productId), HttpStatus.OK);
+    }
+
+
 }
