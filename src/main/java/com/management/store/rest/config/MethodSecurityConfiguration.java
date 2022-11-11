@@ -20,7 +20,13 @@ public class MethodSecurityConfiguration {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests((authz) -> authz
-                        .antMatchers("/error", "/info")
+                        .antMatchers("/error", "/info",
+                                "/swagger-ui/",
+                                "/swagger-ui/**",
+                                "/swagger-resources/**",
+                                "/swagger-ui.html",
+                                "/v2/api-docs",
+                                "/webjars/**")
                         .permitAll()
                         .anyRequest()
                         .authenticated()
