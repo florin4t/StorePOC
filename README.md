@@ -30,7 +30,7 @@ For some basic configuration, see the application.properties file.
 
 3. find a product by its ID
 
-   curl -X http://localhost:8090/api/product/1
+   curl -X GET http://localhost:8090/api/product/1
 
    curl -X GET http://localhost:8090/api/product/99999999
 
@@ -49,3 +49,13 @@ For some basic configuration, see the application.properties file.
    
    curl -X DELETE http://localhost:8090/api/product/INVALID_ID
    
+
+6. Testing with Security
+
+
+Just add the user details to any Curl command:
+
+e.g.:  
+curl -X GET http://localhost:8090/api/product/all --user basic:basic
+ 
+curl -X POST http://localhost:8090/api/product/add -d '{"id": null, "name":"Product 1", "price":100, "currency":"USD"}' -H 'Content-Type: application/json' --user admin:admin
