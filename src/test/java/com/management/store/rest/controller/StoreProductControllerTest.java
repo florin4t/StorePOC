@@ -26,10 +26,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @AutoConfigureMockMvc
 public class StoreProductControllerTest {
     @Autowired
-    private MockMvc mock;
+    protected MockMvc mock;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    protected ObjectMapper objectMapper;
 
     @SneakyThrows
     @Test
