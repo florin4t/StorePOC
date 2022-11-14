@@ -13,6 +13,8 @@ https://github.com/florin4t/StorePOC
 and check out the branch which has all the features: 
 `feature/Nov-2022`.
 
+**Note**: Alternatively, you can also check out the `main` branch, the feature branch should already be merged there.
+
 ### How to build
 
 The project is built using Apache Maven.
